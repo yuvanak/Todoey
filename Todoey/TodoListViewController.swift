@@ -40,5 +40,30 @@ class TodoListViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+   //MARK - Pressing Add Button
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        var newAddedItem = UITextField()
+        
+        let alert = UIAlertController(title: "Add new Todo Item", message: "", preferredStyle: .alert)
+        
+           alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create New Item"
+            newAddedItem = alertTextField
+            }
+        
+        let action = UIAlertAction(title: "New Item", style: .default) { (action) in
+            
+            self.itemArray.append(newAddedItem.text!)
+            self.tableView.reloadData()
+            
+        }
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+        }
+    
+    
+    
 }
 
